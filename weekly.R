@@ -5,22 +5,18 @@
 # субдиректорию mlg/ГГГГММДД в домашней папке, не изменяя названия файлов.
 
 # ВАЖНО!
-# Необходимо ВРУЧНУЮ указать корректную субдиректорию в строке 23.
+# Необходимо ВРУЧНУЮ указать корректную субдиректорию в строке 19.
 
 # Установка пакетов
 #install.packages("xlsx", dependencies = TRUE)
 #install.packages("readxl", dependencies = TRUE)
-#install.packages("assertive", dependencies = TRUE)
-#install.packages("dplyr")
 
 # Загрузка пакетов
 library(readxl)
-library(assertive)
-library(dplyr)
 library(xlsx)
 
 # Объявление рабочей директории
-setwd("C:/Users/kochkin_av/Documents/Матвиенко/mlg/20190117/")
+setwd("~/Documents/Work/mlg/20190103/")
 
 # Списки регионов и глав субъектов для ранжирования
 regions <- read.csv('../regions.csv', header = FALSE, 

@@ -12,12 +12,10 @@
 
 # Загрузка пакетов
 library(readxl)
-library(assertive)
-library(dplyr)
 library(xlsx)
 
 # Объявление рабочей директории
-setwd("C:/Users/kochkin_av/Documents/Матвиенко/mlg/")
+setwd("~/Documents/Work/mlg/")
 
 # Функция для проверки "пустых" переменных
 IsInteger0 <- function(x)
