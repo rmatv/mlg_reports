@@ -1,12 +1,11 @@
 # Скрипт для копирования данных об Ульяновской области из xlsx-выгрузок
 # ИС "Медиалогия" в таблицу "недельный_срез.xlsx".
 # Входные данные приходят в папку "Медиалогия" в ящике на mail.ru каждый 
-# четверг (13 писем). Вложения в формате xlsx желательно сохранять в
+# четверг (13 писем). Вложения в формате xlsx необходимо сохранять в
 # субдиректорию mlg/ГГГГММДД в домашней папке, не изменяя названия файлов.
 
 # ВАЖНО!
-# Необходимо установить корректную субдиректорию в строке 24.
-
+# Необходимо ВРУЧНУЮ указать корректную субдиректорию в строке 23.
 
 # Установка пакетов
 #install.packages("xlsx", dependencies = TRUE)
@@ -21,7 +20,7 @@ library(dplyr)
 library(xlsx)
 
 # Объявление рабочей директории
-setwd("C:/Users/kochkin_av/Documents/Матвиенко/mlg/20190110/")
+setwd("C:/Users/kochkin_av/Documents/Матвиенко/mlg/20190117/")
 
 # Списки регионов и глав субъектов для ранжирования
 regions <- read.csv('../regions.csv', header = FALSE, 
@@ -87,29 +86,18 @@ CreateRows <- function(x)
 
 # Записать в переменную список xlsx-файлов по проектам в субдиректории:
 projects <- list.files(pattern = ".xlsx")
+projects <- projects[1:12]
 projects.names <- gsub(".xlsx", "", list.files())
 projects.names <- cbind(projects.names[1:12])
 
 # Записать данные всех xlsx-файлов в список:
 projects.list <- lapply(projects, read_excel)
 
-# Записать данные по всем проектам в переменные:
-business  <- CreateRows(projects.list[[1]])
-cult      <- CreateRows(projects.list[[2]])
-demo      <- CreateRows(projects.list[[3]])
-digital   <- CreateRows(projects.list[[4]])
-eco       <- CreateRows(projects.list[[5]])
-education <- CreateRows(projects.list[[6]])
-export    <- CreateRows(projects.list[[7]])
-health    <- CreateRows(projects.list[[8]])
-housing   <- CreateRows(projects.list[[9]])
-labour    <- CreateRows(projects.list[[10]])
-roads     <- CreateRows(projects.list[[11]])
-science   <- CreateRows(projects.list[[12]])
+# Вычленить данные по Ульяновской области:
+data <- lapply(projects.list, CreateRows)
 
-# Создать из строк матрицу:
-table <- rbind(business, cult, demo, digital, eco, education, 
-               export, health, housing, labour, roads, science)
+# Табулировать данные по Ульяновской области:
+table <- do.call(rbind.data.frame, data)
 
 # Задать названия рядов
 rownames(table) <- c("Малый бизнес", "Культура", "Демография",
