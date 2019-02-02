@@ -29,7 +29,6 @@ CreateRows <- function(x)
   period <- as.character(x[10, 3])
   names(x) <- as.character(unlist(x[15, ]))
   x <- x[-c(1:15), ]
-  x[x$`Название объекта` %in% "Ульяновская область", ]
   ulo <- as.numeric(x[x$`Название объекта` %in% 
                          "Ульяновская область", ]$`Количество сообщений`)
   ulo <- as.numeric(ifelse(IsInteger0(ulo), "NA", ulo))

@@ -16,7 +16,7 @@ library(readxl)
 library(xlsx)
 
 # Объявление рабочей директории
-setwd("~/Documents/Work/mlg/20190103/")
+setwd("~/Documents/Work/mlg/20190131/")
 
 # Списки регионов и глав субъектов для ранжирования
 regions <- read.csv('../regions.csv', header = FALSE, 
