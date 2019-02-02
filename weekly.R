@@ -82,9 +82,9 @@ CreateRows <- function(x)
 
 # Записать в переменную список xlsx-файлов по проектам в субдиректории:
 projects <- list.files(pattern = ".xlsx")
-projects <- projects[1:12]
+projects <- projects[1:10]
 projects.names <- gsub(".xlsx", "", list.files())
-projects.names <- cbind(projects.names[1:12])
+projects.names <- cbind(projects.names[1:10])
 
 # Записать данные всех xlsx-файлов в список:
 projects.list <- lapply(projects, read_excel)
@@ -98,8 +98,7 @@ table <- do.call(rbind.data.frame, data)
 # Задать названия рядов
 rownames(table) <- c("Малый бизнес", "Культура", "Демография",
                      "Цифровая экономика", "Экология", "Образование",
-                     "Экспорт", "Здравоохранение", "Жильё",
-                     "Производительность труда", "Дороги", "Наука")
+                     "Экспорт", "Здравоохранение", "Жильё", "Дороги")
 # Задать названия столбцов:
 colnames(table) <- c("Ульяновская обл.", "С.И.Морозов", "Кол-во публикаций",
                      "Охват аудитории", "Негатив.", "Нейтральн.", "Позитив.")
